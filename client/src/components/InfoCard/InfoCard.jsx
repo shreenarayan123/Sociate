@@ -60,9 +60,9 @@ const InfoCard = () => {
       <div className="info">
         {/* */}
         <span>
-          <b>Status </b>
+          <b>About </b>
         </span>
-        <span>{profileUser.relationship}</span>
+        <span>{profileUser.about}</span>
       </div>
       <div className="info">
         <span>

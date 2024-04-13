@@ -2,6 +2,10 @@
   display: flex;
   gap: 0.75rem;
 }
+.logoimg{
+  width: 45px;
+  height: 43.5px;
+}
 .Search {
   display: flex;
   background-color: var(--inputColor);
@@ -14,10 +18,11 @@
   outline: none;
 }
 .s-icon {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(106.23deg, #f99827 0%, #f95f35 100%);
+  background: var(--buttonBg);
   border-radius: 5px;
   padding: 4px;
   color: white;

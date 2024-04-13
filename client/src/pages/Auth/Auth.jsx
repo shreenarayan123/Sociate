@@ -53,10 +53,10 @@ const Auth = () => {
       {/* left side */}
 
       <div className="a-left">
-        <img src={Logo} alt="" />
-
+        
         <div className="Webname">
-          <h1>ZKC Media</h1>
+        <img className="authlogo" src={Logo} alt="" />
+
           <h6>Explore the ideas throughout the world</h6>
         </div>
       </div>

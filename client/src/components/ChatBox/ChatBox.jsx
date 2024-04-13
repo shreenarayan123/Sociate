@@ -156,7 +156,7 @@ useEffect(()=> {
                 style={{ display: "none" }}
                 ref={imageRef}
               />
-            </div>{" "}
+            </div>
           </>
         ) : (
           <span className="chatbox-empty-message">

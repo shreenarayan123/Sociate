@@ -4,8 +4,10 @@ import Comment from "../../img/comment.png";
 import Share from "../../img/share.png";
 import Heart from "../../img/like.png";
 import NotLike from "../../img/notlike.png";
-import { likePost } from "../../api/PostsRequests";
+import { deletePost, likePost } from "../../api/PostsRequests";
 import { useSelector } from "react-redux";
+import {format} from 'timeago.js';
+import { UilEllipsisH } from '@iconscout/react-unicons'
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -13,13 +15,55 @@ const Post = ({ data }) => {
   const [likes, setLikes] = useState(data.likes.length)
 
   
+  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [isMoreVisible, setIsMoreVisible] = useState(false);
+
+  const handledelete = () => {
+      setIsMoreVisible(!isMoreVisible); // Toggle the visibility state
+  };
+  const handlePost =async()=>{
+
+    console.log("userid, postid",data._id, user._id)
+    await deletePost(data._id, user._id);
+  }
   const handleLike = () => {
+    
     likePost(data._id, user._id);
     setLiked((prev) => !prev);
     liked? setLikes((prev)=>prev-1): setLikes((prev)=>prev+1)
   };
   return (
     <div className="Post">
+      <div className="post-head">
+      <div className="user-details">
+      <img
+        src={
+          user.profilePicture
+            ? serverPublic + user.profilePicture
+            : serverPublic + "defaultProfile.png"
+        }
+        alt="Profile"
+      />
+      <span  style={{color:"black"  , fontWeight:"bold"}}  >{user.username}</span>
+      <span  style={{color:"gray"}}  >{user.firstname}</span>
+      <span style={{background:"gray", height:"0.3rem" ,width:"0.3rem" ,borderRadius:"50%"}} ></span>
+      <span  style={{color:"gray"}}  >{format(data.createdAt)}</span>
+      </div>
+      <div style={{ position: "relative" }}>
+            <span className="more" onClick={handledelete} style={{cursor:"pointer",position: "absolute", bottom: "0.7rem", right:"-0.1rem" }}  ><UilEllipsisH/> </span>
+            {isMoreVisible && (
+                
+                  <span className="post-more"  onClick={handlePost} style={{ cursor:"pointer", fontSize:"1rem", borderRadius: "0.7rem",  color:"black",display:"flex",alignItems:"center", justifyContent:"center", background: "white", height: "2.7rem", width: "4rem", position: "absolute", bottom: "2rem", right:"0.5rem" ,boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)" }} >delete</span>
+               
+            )}
+        </div>
+      </div>
+      <div className="detail">
+        <span>
+          <b>{data.name} </b>
+        </span>
+        <span>{data.desc}</span>
+      </div>
       <img
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
         alt=""
@@ -39,12 +83,7 @@ const Post = ({ data }) => {
       <span style={{ color: "var(--gray)", fontSize: "12px" }}>
         {likes} likes
       </span>
-      <div className="detail">
-        <span>
-          <b>{data.name} </b>
-        </span>
-        <span>{data.desc}</span>
-      </div>
+     
     </div>
   );
 };

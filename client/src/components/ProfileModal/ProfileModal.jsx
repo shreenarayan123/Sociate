@@ -116,25 +116,16 @@ const ProfileModal = ({ modalOpened, setModalOpened, data }) => {
             className="infoInput"
           />
           <input
-            value={formData.country}
+            value={formData.about}
             onChange={handleChange}
             type="text"
-            placeholder="Country"
-            name="country"
+            placeholder="About"
+            name="about"
             className="infoInput"
           />
         </div>
 
-        <div>
-          <input
-            value={formData.relationship}
-            onChange={handleChange}
-            type="text"
-            className="infoInput"
-            placeholder="Relationship status"
-            name="relationship"
-          />
-        </div>
+        
 
         <div>
           Profile image

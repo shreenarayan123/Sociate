@@ -24,7 +24,10 @@
   width: 4rem;
   height: 4rem;
 }
-
+.Webname .authlogo{
+  width: 250px;
+  height: 242.95px;
+}
 .Webname > h1 {
     font-size: 3rem;
     background-color: red;

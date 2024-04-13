@@ -8,6 +8,8 @@ import { UilTimes } from "@iconscout/react-unicons";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadImage, uploadPost } from "../../actions/UploadAction";
 
+import InputEmoji from 'react-input-emoji'
+
 const PostShare = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.authReducer.authData);
@@ -69,7 +71,45 @@ const PostShare = () => {
         }
         alt="Profile"
       />
+      {/* <div className="chat-sender">
+              <div onClick={() => imageRef.current.click()}>+</div>
+              <InputEmoji
+               
+               
+                // value={newMessage}
+                // onChange={handleChange}
+                ref={desc}
+              />
+             <button
+            className="button ps-button"
+            onClick={handleUpload}
+            disabled={loading}
+          >
+            {loading ? "uploading" : "Share"}
+          </button>
+              <input
+                type="file"
+                name=""
+                id=""
+                style={{ display: "none" }}
+                ref={imageRef}
+              />
+            </div>
+            {image && (
+          <div className="previewImage">
+            <UilTimes onClick={() => setImage(null)} />
+            <img src={URL.createObjectURL(image)} alt="preview" />
+          </div>
+        )} */}
       <div>
+      {/* <div style={{ position: 'relative' }}> 
+      <InputEmoji
+        
+        ref={desc}
+        style={{ position: 'absolute', bottom: 0 }} 
+      />
+    </div>  */}
+    
         <input
           type="text"
           placeholder="What's happening?"
@@ -85,7 +125,6 @@ const PostShare = () => {
             <UilScenery />
             Photo
           </div>
-
           <div className="option" style={{ color: "var(--video)" }}>
             <UilPlayCircle />
             Video
@@ -98,6 +137,8 @@ const PostShare = () => {
             <UilSchedule />
             Shedule
           </div>
+
+          
           <button
             className="button ps-button"
             onClick={handleUpload}

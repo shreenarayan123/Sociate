@@ -24,11 +24,21 @@ const UserSchema = mongoose.Schema(
     },
    profilePicture: String,
     coverPicture: String,
-    about: String,
-    livesIn: String,
-    worksAt: String,
-    relationship: String,
+    about: {
+      type:String,
+      default:"Write about youself"
+    },
+    livesIn: {
+      type:String,
+      default:"Earth"
+    },
+    worksAt: {
+      type:String,
+      default:"Home"
+    }
+    ,
     country: String,
+
     followers: [],
     following: [],
   },
