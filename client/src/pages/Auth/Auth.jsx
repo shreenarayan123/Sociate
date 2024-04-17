@@ -43,8 +43,10 @@ const Auth = () => {
       data.password === data.confirmpass
         ? dispatch(signUp(data, navigate))
         : setConfirmPass(false);
+
     } else {
       dispatch(logIn(data, navigate));
+     setIsSignUp(false)
     }
   };
 

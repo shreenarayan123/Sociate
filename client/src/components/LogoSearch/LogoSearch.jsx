@@ -49,7 +49,7 @@ const LogoSearch = ({location}) => {
            value={searchQuery}
           onChange={handleSearch}
           onClick={showModal} placeholder="#Explore"/>
-          <div className="s-icon">
+          <div className="s-icon"  >
                 <UilSearch/>
           </div>
       </div>

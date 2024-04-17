@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 
 
+
 const SearchModal = ({ modalOpened,searchResults, setModalOpened }) => {
     const { user } = useSelector((state) => state.authReducer.authData);
     
@@ -21,7 +22,7 @@ const SearchModal = ({ modalOpened,searchResults, setModalOpened }) => {
       }
       overlayOpacity={0.55}
       overlayBlur={3}
-      size="60%"
+      size="50%"
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
@@ -29,13 +30,18 @@ const SearchModal = ({ modalOpened,searchResults, setModalOpened }) => {
        <div style={{width:"80%"}}>
        <LogoSearch  location='modal'/>
        </div>
-    <div style={{width:"80%"}}>
+       <div style={{ width: "80%" }}>
     {searchResults.map((person, id) => {
-      
-        if ((person._id) !== (user._id)) return <User person={person} key={id} />;
-      })}
-    </div>
+        const excludedIds = ['66193833ff3c43d2ece83a2d', '66194c8563887443458ddcc9'];
+        if (!excludedIds.includes(person._id)) {
+            return <User person={person} key={id} />;
+        } else {
+            return null; // Exclude the user
+        }
+    })}
+</div>
        </div>
+        
       
 
     </Modal>

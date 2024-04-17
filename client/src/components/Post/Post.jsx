@@ -4,7 +4,8 @@ import Comment from "../../img/comment.png";
 import Share from "../../img/share.png";
 import Heart from "../../img/like.png";
 import NotLike from "../../img/notlike.png";
-import { deletePost, likePost } from "../../api/PostsRequests";
+import axios from "axios";
+import { likePost } from "../../api/PostsRequests";
 import { useSelector } from "react-redux";
 import {format} from 'timeago.js';
 import { UilEllipsisH } from '@iconscout/react-unicons'
@@ -18,14 +19,23 @@ const Post = ({ data }) => {
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const [isMoreVisible, setIsMoreVisible] = useState(false);
 
-  const handledelete = () => {
+  const handlemore = () => {
       setIsMoreVisible(!isMoreVisible); // Toggle the visibility state
   };
-  const handlePost =async()=>{
+  const handleDelete =async()=>{
+    const id = data._id;
+    const userid =user._id; 
 
-    console.log("userid, postid",data._id, user._id)
-    await deletePost(data._id, user._id);
-  }
+   const res = await  axios.delete(`http://localhost:5000/posts/${id}`,{
+      headers:{
+        'Authorization':`Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+        },
+        data:{
+          userId:userid
+        }
+    }
+  )
+      }
   const handleLike = () => {
     
     likePost(data._id, user._id);
@@ -44,16 +54,16 @@ const Post = ({ data }) => {
         }
         alt="Profile"
       />
-      <span  style={{color:"black"  , fontWeight:"bold"}}  >{user.username}</span>
-      <span  style={{color:"gray"}}  >{user.firstname}</span>
+      <span  style={{color:"black"  , fontWeight:"bold"}}  >{user.firstname}</span>
+      <span  style={{color:"gray"}}  >@{user.username}</span>
       <span style={{background:"gray", height:"0.3rem" ,width:"0.3rem" ,borderRadius:"50%"}} ></span>
       <span  style={{color:"gray"}}  >{format(data.createdAt)}</span>
       </div>
       <div style={{ position: "relative" }}>
-            <span className="more" onClick={handledelete} style={{cursor:"pointer",position: "absolute", bottom: "0.7rem", right:"-0.1rem" }}  ><UilEllipsisH/> </span>
+            <span className="more" onClick={handlemore} style={{cursor:"pointer",position: "absolute", bottom: "0.7rem", right:"-0.1rem" }}  ><UilEllipsisH/> </span>
             {isMoreVisible && (
                 
-                  <span className="post-more"  onClick={handlePost} style={{ cursor:"pointer", fontSize:"1rem", borderRadius: "0.7rem",  color:"black",display:"flex",alignItems:"center", justifyContent:"center", background: "white", height: "2.7rem", width: "4rem", position: "absolute", bottom: "2rem", right:"0.5rem" ,boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)" }} >delete</span>
+                  <span className="post-more"  onClick={handleDelete} style={{ cursor:"pointer", fontSize:"1rem",fontWeight:"bold", borderRadius: "0.7rem",  color:"black",display:"flex",alignItems:"center", justifyContent:"center", background: "white", height: "2.7rem", width: "4rem", position: "absolute", bottom: "2rem", right:"0.5rem" ,boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)" }} >delete</span>
                
             )}
         </div>

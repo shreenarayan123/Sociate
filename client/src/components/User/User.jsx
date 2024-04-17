@@ -44,9 +44,13 @@ const redirectFollower = ()=>{
       : dispatch(followUser(person._id, user));
     setFollowing((prev) => !prev);
   };
+    
+
+
   return (
     <div className="follower">
       <div>
+        
         <img  style={{cursor:"pointer"}} onClick={redirectFollower}
           src={
             person.profilePicture
@@ -74,7 +78,7 @@ const redirectFollower = ()=>{
             <span className="more" onClick={handleChat} style={{cursor:"pointer"}}  ><UilEllipsisH/> </span>
             {isChatVisible && (
                 
-                  <span className="chat"  onClick={handleChatClick} style={{ cursor:"pointer", fontSize:"1rem", borderRadius: "0.7rem",  color:"black",display:"flex",alignItems:"center", justifyContent:"center", background: "white", height: "3rem", width: "3rem", position: "absolute", bottom: "1.5rem", left:"-1.7rem" ,boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)" }} >chat</span>
+                  <span className="chat"  onClick={handleChatClick} style={{ cursor:"pointer", fontSize:"1rem",fontWeight:"bold", borderRadius: "0.7rem",  color:"black",display:"flex",alignItems:"center", justifyContent:"center", background: "white", height: "3rem", width: "3rem", position: "absolute", bottom: "1.5rem", left:"-1.7rem" ,boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)" }} >chat</span>
                
             )}
         </div>
