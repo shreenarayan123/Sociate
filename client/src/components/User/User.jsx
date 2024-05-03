@@ -5,6 +5,7 @@ import { followUser, unfollowUser } from "../../actions/UserAction";
 import { UilEllipsisH } from '@iconscout/react-unicons'
 import { createChat } from "../../api/ChatRequests";
 const User = ({ person }) => {
+  console.log("person",person.username);
   // 
   const navigate = useNavigate()
   const [isChatVisible, setIsChatVisible] = useState(false);

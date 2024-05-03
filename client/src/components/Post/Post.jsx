@@ -9,13 +9,13 @@ import { likePost } from "../../api/PostsRequests";
 import { useSelector } from "react-redux";
 import {format} from 'timeago.js';
 import { UilEllipsisH } from '@iconscout/react-unicons'
+import { useNavigate, useNavigationType } from "react-router-dom";
 
 const Post = ({ data }) => {
   const { user } = useSelector((state) => state.authReducer.authData);
   const [liked, setLiked] = useState(data.likes.includes(user._id));
   const [likes, setLikes] = useState(data.likes.length)
 
-  
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
   const [isMoreVisible, setIsMoreVisible] = useState(false);
 
@@ -35,6 +35,7 @@ const Post = ({ data }) => {
         }
     }
   )
+  window.location.reload();
       }
   const handleLike = () => {
     
@@ -74,10 +75,14 @@ const Post = ({ data }) => {
         </span>
         <span>{data.desc}</span>
       </div>
-      <img
+      
+      <div className="postImage">
+      <img 
         src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""}
         alt=""
       />
+      
+      </div>
 
       <div className="postReact">
         <img

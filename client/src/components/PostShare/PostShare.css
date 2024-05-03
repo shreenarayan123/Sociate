@@ -1,22 +1,30 @@
 .PostShare{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-  
+   flex-direction: column;
     background-color: var(--cardColor);
     padding: 1rem;
+    gap: 1rem;
+   
     border-radius: 1rem;
 }
+.PostShare .head{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 3rem;
+    gap: 0.5rem;
+    width: 100%;
+}
 
-
-.PostShare>img{
+.PostShare .head img{
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
 }
-.PostShare>div{
+.PostShare .head input{
     display: flex;
-    flex-direction: column;
+   
     width: 90%;
     gap: 1rem;
 }
@@ -26,6 +34,7 @@
     border-radius: 10px;
     padding: 10px;
     font-size: 17px;
+    width: 100%;
     border: none;
     outline: none;
 }
@@ -34,30 +43,45 @@
 
 
 
-.postOptions{
+.post-options{
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+   
+   justify-content: space-between
+}
+.post-options .p-actions{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+   
+    gap: 1rem;
 }
 
 .option{
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    border-radius: 7px;
+    height: 80%;
     font-size: 1.2rem;
+    padding: 0px 15px 0px 15px;
+    background-color: rgb(219, 216, 216);
+    /* padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px; */
+   
+   
 }
 
 .option:hover{
     cursor: pointer;
 }
 .ps-button{
-    padding: 5px;
+    padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 12px;
+    font-size: 0.8rem;
 }
 
 
@@ -69,8 +93,8 @@
 
 .previewImage>svg{
     position: absolute;
-    right: 1rem;
-    top: 0.5rem;
+
+    top:3rem;
     cursor: pointer;
 }
 

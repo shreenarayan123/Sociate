@@ -38,7 +38,10 @@ const LogoSearch = ({location}) => {
       const results = persons.filter(user =>
           user.username.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      setSearchResults(results);
+      if(!results.includes(user._id)){
+        setSearchResults(results);
+      }
+      
   }, [searchQuery]); 
     
   return (
