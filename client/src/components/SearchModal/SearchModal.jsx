@@ -40,6 +40,8 @@ const SearchModal = ({ modalOpened, searchResults, setModalOpened }) => {
        }
        
       )
+
+
        
       }
   
